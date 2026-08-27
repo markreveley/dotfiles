@@ -1,0 +1,18 @@
+# Whitelist approach: ignore everything, then un-ignore config worth versioning.
+*
+
+!.gitignore
+!README.md
+!CLAUDE.md
+!settings.json
+!statusline.sh
+!skills/
+!skills/**
+!hooks/
+!hooks/**
+
+# Explicitly NOT tracked (runtime data, caches, secrets, transcripts):
+#   projects/ history.jsonl sessions/ telemetry/ statsig/ file-history/
+#   paste-cache/ shell-snapshots/ session-env/ todos/ tasks/ backups/
+#   cache/ debug/ chrome/ plugins/ stats-cache.json mcp-needs-auth-cache.json
+#   settings.local.json (local machine overrides, intentionally untracked)
