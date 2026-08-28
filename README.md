@@ -15,8 +15,8 @@ continue to live in `~/.claude`.
 ## Install
 
 ```sh
-git clone git@github.com:markreveley/dotfiles.git ~/dev/repos/dotfiles
-~/dev/repos/dotfiles/install.sh
+git clone git@github.com:markreveley/dotfiles.git ~/dev/repos/public/dotfiles
+~/dev/repos/public/dotfiles/install.sh
 ```
 
 Existing destination files are preserved with a timestamped `.backup-*` suffix.
@@ -24,4 +24,3 @@ The script is safe to rerun.
 
 Keep secrets and machine-local shell configuration in `~/.zshrc.local`; it is
 sourced by the tracked `.zshrc` and intentionally remains outside this repository.
-
