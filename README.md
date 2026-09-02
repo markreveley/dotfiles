@@ -1,11 +1,12 @@
 # dotfiles
 
-Personal shell, Git, and Claude Code configuration.
+Personal shell, Git, Neovim, and Claude Code configuration.
 
 The repository uses a conventional package layout mirroring paths beneath `$HOME`:
 
 - `zsh/` — Zsh configuration and aliases
 - `git/` — Git configuration and global ignores
+- `nvim/` — Neovim configuration and pinned plugin revisions
 - `claude/` — hand-maintained Claude Code configuration, hooks, and skills
 
 Claude runtime data, transcripts, caches, local overrides, and credentials are not

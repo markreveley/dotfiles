@@ -29,6 +29,8 @@ link_file() {
 link_file zsh/.zshrc .zshrc
 link_file git/.gitconfig .gitconfig
 link_file git/.gitignore_global .gitignore_global
+link_file nvim/.config/nvim/init.lua .config/nvim/init.lua
+link_file nvim/.config/nvim/lazy-lock.json .config/nvim/lazy-lock.json
 link_file claude/.claude/.gitignore .claude/.gitignore
 link_file claude/.claude/CLAUDE.md .claude/CLAUDE.md
 link_file claude/.claude/settings.json .claude/settings.json
@@ -36,4 +38,3 @@ link_file claude/.claude/statusline.sh .claude/statusline.sh
 link_file claude/.claude/hooks/cb-desk.sh .claude/hooks/cb-desk.sh
 link_file claude/.claude/skills/end/SKILL.md .claude/skills/end/SKILL.md
 link_file claude/.claude/skills/merge-worktrees/SKILL.md .claude/skills/merge-worktrees/SKILL.md
-
