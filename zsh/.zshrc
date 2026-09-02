@@ -37,6 +37,7 @@ export PATH="$HOME/bin:$PATH"
 
 alias cc="claude --dangerously-skip-permissions"
 alias cx="codex --approve-for-me"
+alias t='tree -L 2'
 
 # Send view("MMDD") to the display surface in cmux
 # Usage: d 0318
