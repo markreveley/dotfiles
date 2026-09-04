@@ -280,6 +280,7 @@ require("lazy").setup({
           vim.keymap.set("n", "<Space>", api.node.open.preview, {
             buffer = bufnr,
             silent = true,
+            nowait = true,
             desc = "nvim-tree: Open Preview",
           })
         end,
