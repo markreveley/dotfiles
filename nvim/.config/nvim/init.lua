@@ -277,6 +277,18 @@ require("lazy").setup({
 
           -- Keep nvim-tree's default mappings, including <Tab> preview.
           api.config.mappings.default_on_attach(bufnr)
+          -- Use s as the window-command prefix everywhere. Preserve
+          -- nvim-tree's default system-open action on gs.
+          vim.keymap.set("n", "s", "<C-w>", {
+            buffer = bufnr,
+            silent = true,
+            desc = "Window commands",
+          })
+          vim.keymap.set("n", "gs", api.node.run.system, {
+            buffer = bufnr,
+            silent = true,
+            desc = "nvim-tree: Open with system app",
+          })
           vim.keymap.set("n", "<Space>", api.node.open.preview, {
             buffer = bufnr,
             silent = true,
@@ -323,6 +335,7 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { silent = true })
 
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { silent = true })
 vim.keymap.set("n", "<leader>f", ":NvimTreeFindFile<CR>", { silent = true })
+vim.keymap.set("n", "s", "<C-w>", { silent = true, desc = "Window commands" })
 
 -- Telescope
 vim.keymap.set("n", "<leader>p", ":Telescope find_files<CR>", { silent = true })
