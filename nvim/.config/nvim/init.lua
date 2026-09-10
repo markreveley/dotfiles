@@ -28,12 +28,31 @@ require("lazy").setup({
     end,
   },
   {
+    "navarasu/onedark.nvim",
+    priority = 1000,
+    config = function()
+      require("onedark").setup({
+        style = "darker",
+        term_colors = true,
+        highlights = {
+          Normal = { fg = "#e6e6e6" },
+          NormalFloat = { fg = "#e6e6e6" },
+        },
+      })
+      require("onedark").load()
+    end,
+  },
+  {
+    "sainnhe/everforest",
+    priority = 1000,
+    config = function()
+      vim.g.everforest_background = "medium"
+    end,
+  },
+  {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
-    config = function()
-      vim.cmd.colorscheme("catppuccin-nvim")
-    end,
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
@@ -331,6 +350,14 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.termguicolors = true
+
+-- Neovim 0.12 filters ESC from text pasted into :terminal by default. That
+-- strips the ESC bytes that frame an outer terminal's bracketed paste sequence
+-- (ESC [200~ ... ESC [201~), so Zsh receives literal [200~ / [201~ text.
+-- Keep the other control-character filtering, but preserve ESC so Zsh can
+-- recognize the framing through its bracketed-paste widget. This means pasted
+-- terminal control sequences are no longer stripped; only paste trusted text.
+vim.opt.termpastefilter = "BS,HT,DEL"
 vim.opt.scrolloff = 8
 vim.opt.mousescroll = "ver:1"
 
@@ -347,6 +374,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Terminal mode: double-Esc leaves insert mode (same as <C-\><C-n>).
 -- Single Esc still passes through to the program running in the terminal.
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { silent = true })
+vim.keymap.set("t", "<C-t>", "<C-\\><C-n>", { silent = true })
 
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { silent = true })
 vim.keymap.set("n", "<leader>f", ":NvimTreeFindFile<CR>", { silent = true })
