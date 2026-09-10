@@ -87,8 +87,23 @@ require("lazy").setup({
 
       local function follow_from_inline_tree()
         local dest = link_destination_at_cursor()
-        if not dest or dest:sub(1, 1) == "#" then
+        if not dest then
           return false
+        end
+        -- The installed plugin's resolve_link returns the fragment twice,
+        -- instead of returning "heading" as its type, so #heading links
+        -- never reach its heading handler. Resolve them in this fallback.
+        if dest:sub(1, 1) == "#" then
+          local heading = vim.fn.escape(dest:sub(2), [[\.^$~[]*]])
+          heading = heading:gsub("-", "[- ]*"):gsub("_", "[_ ]*")
+          local pattern = "\\c^#\\+ *" .. heading .. "\\s*#*\\s*$"
+          local target = vim.fn.searchpos(pattern, "nw")
+          if target[1] == 0 then
+            return false
+          end
+          vim.cmd("normal! m'")
+          vim.api.nvim_win_set_cursor(0, { target[1], 0 })
+          return true
         end
         if dest:match("^https?://") then
           vim.ui.open(dest)
@@ -143,8 +158,8 @@ require("lazy").setup({
             or not vim.deep_equal(vim.api.nvim_win_get_cursor(0), cursor)
         end
 
-        -- The fallback covers links in table cells. Web links open in the
-        -- browser and misses do nothing; neither creates a Neovim tab.
+        -- The fallback covers table cells and same-document headings. Web
+        -- links open in the browser; misses do not create a Neovim tab.
         if not moved() then
           follow_from_inline_tree()
         end
